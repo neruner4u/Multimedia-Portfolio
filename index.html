@@ -1,11 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Website</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DEV LOG — Project Showcase</title>
+  <link rel="stylesheet" href="style.css"/>
+
 </head>
 <body>
-  <h1>Hello World</h1>
-  <p>This is my GitHub Pages website.</p>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-block">
+      <div class="label">// dev portfolio</div>
+      <h1>PROJECT <span>LOG</span></h1>
+    </div>
+    <div class="header-meta">
+      <div><span class="status-dot"></span>STATUS: ACTIVE</div>
+      <div>UPDATED: WEEKLY</div>
+      <div>SYSTEM: NOMINAL</div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#projects" class="active">Projects</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">// personal project tracker</div>
+    <h2>Building things,<br/><em>week by week.</em></h2>
+    <p>A running log of experiments, builds, and progress. Each project tracked openly — what worked, what didn't, and what's next.</p>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider">
+    <span>// active projects</span>
+  </div>
+
+  <!-- PROJECT CARDS -->
+  <section class="projects" id="projects">
+
+    <!-- ROTOSCOPE -->
+    <a class="card fade-in" href="rotoscope/index.html">
+      <div class="card-id">PRJ-001</div>
+      <div class="card-icon">✦</div>
+      <h3>Rotoscope</h3>
+      <p class="desc">Frame-by-frame animation tool exploring rotoscoping techniques. Tracing motion, building visual vocabulary.</p>
+      <div class="card-link">rotoscope/index.html</div>
+      <div class="card-footer">
+        <span class="tag">Animation</span>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" style="width: 60%"></div>
+        </div>
+        <span class="progress-label">60%</span>
+      </div>
+    </a>
+
+    <!-- SOLAR SYSTEM -->
+    <a class="card fade-in" href="solar-system/index.html">
+      <div class="card-id">PRJ-002</div>
+      <div class="card-icon">◎</div>
+      <h3>Solar System</h3>
+      <p class="desc">Interactive orbital simulation. Planets, physics, and scale — rendered in the browser with real proportional data.</p>
+      <div class="card-link">solar-system/index.html</div>
+      <div class="card-footer">
+        <span class="tag">Simulation</span>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" style="width: 45%"></div>
+        </div>
+        <span class="progress-label">45%</span>
+      </div>
+    </a>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>// PROJECT LOG — PERSONAL PORTFOLIO</span>
+    <span>BUILT WITH HTML · CSS · JS</span>
+  </footer>
+
 </body>
 </html>
