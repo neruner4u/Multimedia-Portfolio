@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>3D Solar System — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0b0b0b;
+    --bg2: #111111;
+    --bg3: #181818;
+    --border: rgba(255,255,255,0.08);
+    --accent: #c8a97e;
+    --text: #e2e2e2;
+    --text-mid: #999;
+    --text-dim: #555;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  * { position: relative; z-index: 1; }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 28px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+  }
+  .logo-block .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .logo-block h1 {
+    font-family: var(--serif);
+    font-size: clamp(22px, 4vw, 36px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .logo-block h1 em { font-style: italic; color: var(--accent); }
+  .header-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .status-row { display: flex; align-items: center; gap: 6px; color: var(--accent); }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* NAV */
+  nav {
+    padding: 14px 40px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+  nav a {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav a:hover, nav a.active { color: var(--accent); }
+  .nav-back::before { content: '← '; }
+
+  /* HERO */
+  .hero {
+    padding: 64px 40px 48px;
+    border-bottom: 1px solid var(--border);
+    max-width: 720px;
+  }
+  .hero-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 16px; }
+  .hero h2 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 5vw, 50px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+  .hero h2 em { font-style: italic; color: var(--accent); }
+  .hero p { font-size: 13px; color: var(--text-mid); line-height: 1.8; max-width: 500px; margin-bottom: 20px; }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tech-tag {
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-dim); border: 1px solid var(--border); padding: 3px 8px; border-radius: 2px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 16px;
+  }
+  .divider span { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; }
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* FEATURED VIDEO */
+  .featured-video { padding: 40px; border-bottom: 1px solid var(--border); }
+  .video-wrap {
+    position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+    border: 1px solid var(--border); border-radius: 2px; background: var(--bg3);
+  }
+  .video-wrap iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+  /* PROJECT DETAILS */
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    border-bottom: 1px solid var(--border);
+  }
+  .detail-block {
+    padding: 32px 40px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .detail-block:last-child { border-right: none; }
+  .detail-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  .detail-block ul { list-style: none; }
+  .detail-block ul li {
+    font-size: 12px; color: var(--text-mid); line-height: 1.8;
+    padding: 4px 0; border-bottom: 1px solid var(--border);
+  }
+  .detail-block ul li:last-child { border-bottom: none; }
+  .detail-block ul li::before { content: '— '; color: var(--text-dim); }
+  .detail-block a { color: var(--accent); text-decoration: none; }
+  .detail-block a:hover { text-decoration: underline; }
+
+  /* ANIMATION SEQUENCE */
+  .sequence { padding: 40px; border-bottom: 1px solid var(--border); }
+  .sequence-list { display: flex; flex-direction: column; gap: 0; }
+  .seq-item {
+    display: flex; gap: 24px; align-items: flex-start;
+    padding: 20px 0; border-bottom: 1px solid var(--border);
+  }
+  .seq-item:last-child { border-bottom: none; }
+  .seq-time {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); white-space: nowrap; min-width: 120px; padding-top: 2px;
+  }
+  .seq-desc h4 { font-family: var(--serif); font-size: 16px; font-weight: 400; color: var(--text); margin-bottom: 4px; }
+  .seq-desc p { font-size: 12px; color: var(--text-mid); line-height: 1.8; }
+
+  /* CALCULATOR */
+  .calculator { padding: 40px; border-bottom: 1px solid var(--border); }
+  .calc-inner {
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 2px; padding: 28px 32px;
+  }
+  .calc-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+  }
+  .calc-title {
+    font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--text); margin-bottom: 20px;
+  }
+  .calc-row { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+  .calc-input {
+    flex: 1; background: var(--bg2); border: none; outline: none;
+    padding: 12px 16px; font-family: var(--mono); font-size: 13px; color: var(--text);
+  }
+  .calc-input::placeholder { color: var(--text-dim); }
+  .calc-btn {
+    background: var(--accent); border: none; padding: 12px 20px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #0b0b0b; cursor: pointer; transition: opacity 0.2s;
+    white-space: nowrap;
+  }
+  .calc-btn:hover { opacity: 0.85; }
+  .calc-hint { font-size: 10px; color: var(--text-dim); margin-top: 10px; letter-spacing: 0.08em; }
+
+  /* PLANETS GRID */
+  .planets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    border-bottom: 1px solid var(--border);
+  }
+  .planet-card {
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 32px;
+    transition: background 0.3s;
+  }
+  .planet-card:hover { background: var(--bg2); }
+
+  .planet-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
+  }
+  .planet-name {
+    font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--text); line-height: 1.2;
+  }
+  .planet-badge {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid rgba(200,169,126,0.25); padding: 3px 8px; border-radius: 2px;
+  }
+
+  .planet-video {
+    width: 100%; border: 1px solid var(--border); border-radius: 2px;
+    overflow: hidden; background: var(--bg3); margin-bottom: 16px;
+  }
+  .planet-video video { width: 100%; display: block; max-height: 200px; object-fit: cover; opacity: 0.85; }
+  .planet-card:hover .planet-video video { opacity: 1; }
+
+  .planet-stats { margin-bottom: 14px; }
+  .stat-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 5px 0; border-bottom: 1px solid var(--border); gap: 12px;
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-key { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; }
+  .stat-val { font-size: 12px; color: var(--text-mid); text-align: right; }
+  .stat-val.dynamic { color: var(--accent); }
+
+  .planet-desc { font-size: 12px; color: var(--text-dim); line-height: 1.8; font-style: italic; }
+
+  /* PYTHON SCRIPT */
+  .script-section { padding: 40px; border-bottom: 1px solid var(--border); }
+  .script-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; gap: 16px; flex-wrap: wrap; }
+  .script-title { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--text); margin-bottom: 6px; }
+  .script-desc { font-size: 12px; color: var(--text-mid); line-height: 1.8; max-width: 500px; }
+  .script-actions { display: flex; gap: 8px; flex-shrink: 0; }
+  .btn-ghost {
+    background: transparent; border: 1px solid var(--border); padding: 8px 16px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-dim); cursor: pointer; border-radius: 2px; transition: all 0.2s; white-space: nowrap;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-accent {
+    background: var(--accent); border: 1px solid var(--accent); padding: 8px 16px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #0b0b0b; cursor: pointer; border-radius: 2px; transition: opacity 0.2s; text-decoration: none;
+    display: inline-block;
+  }
+  .btn-accent:hover { opacity: 0.85; }
+
+  .code-block {
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 2px;
+    overflow: auto; max-height: 480px;
+  }
+  .code-block pre {
+    margin: 0; padding: 24px; font-family: var(--mono); font-size: 11px;
+    line-height: 1.7; color: var(--text-mid); white-space: pre;
+  }
+  .code-block pre .kw { color: #c8a97e; }
+  .code-block pre .cm { color: #555; font-style: italic; }
+  .code-block pre .st { color: #9db8a0; }
+  .code-block pre .nm { color: #a8b8d0; }
+
+  /* FOOTER */
+  footer {
+    padding: 24px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim);
+    flex-wrap: wrap; gap: 12px;
+  }
+
+  /* FADE IN */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+  .fade-in { opacity: 0; animation: fadeUp 0.5s ease forwards; }
+  .fade-in:nth-child(1){animation-delay:0.05s} .fade-in:nth-child(2){animation-delay:0.12s}
+  .fade-in:nth-child(3){animation-delay:0.19s} .fade-in:nth-child(4){animation-delay:0.26s}
+  .fade-in:nth-child(5){animation-delay:0.33s} .fade-in:nth-child(6){animation-delay:0.40s}
+  .fade-in:nth-child(7){animation-delay:0.47s} .fade-in:nth-child(8){animation-delay:0.54s}
+  .fade-in:nth-child(9){animation-delay:0.61s} .fade-in:nth-child(10){animation-delay:0.68s}
+
+  @media (max-width: 640px) {
+    header, nav, .hero, .divider, .featured-video, .sequence, .calculator, .script-section, footer { padding-left: 20px; padding-right: 20px; }
+    .detail-block, .planet-card { border-right: none; padding: 24px 20px; }
+    .seq-item { flex-direction: column; gap: 8px; }
+    .seq-time { min-width: auto; }
+    .script-header { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-block">
+    <div class="eyebrow">// multimedia & authoring</div>
+    <h1>Visual <em>Works</em></h1>
+  </div>
+  <div class="header-meta">
+    <div class="status-row"><div class="dot"></div> Status: Active</div>
+    <div>Updated: Weekly</div>
+    <div>System: Nominal</div>
+  </div>
+</header>
+
+<nav>
+  <a href="../index.html" class="nav-back">Back to Projects</a>
+  <a href="#details">Details</a>
+  <a href="#planets">Planets</a>
+  <a href="#script">Script</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">// PRJ-001 — 3D Rendering</div>
+  <h2>3D Solar<br/><em>System.</em></h2>
+  <p>A dynamic 3D solar system animation created in Blender, utilizing Python scripting (v3.3) in the Scripting tab for procedural automation and precise celestial motion.</p>
+  <div class="tech-tags">
+    <span class="tech-tag">Blender</span>
+    <span class="tech-tag">3D Modeling</span>
+    <span class="tech-tag">Python Script</span>
+  </div>
+</section>
+
+<div class="divider">
+  <span>// final output</span>
+  <div class="divider-line"></div>
+</div>
+
+<section class="featured-video">
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/RTRwZFPa3DM" title="3D Solar System"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+</section>
+
+<div class="divider" id="details">
+  <span>// project details</span>
+  <div class="divider-line"></div>
+</div>
+
+<section class="details-grid">
+  <div class="detail-block">
+    <div class="detail-label">Tools Used</div>
+    <ul>
+      <li>Blender 3.3 — 3D modeling & animation</li>
+      <li>Python scripting — procedural generation</li>
+    </ul>
+  </div>
+  <div class="detail-block">
+    <div class="detail-label">Render Info</div>
+    <ul>
+      <li>Render time: ~13 hours 30 minutes</li>
+      <li>Resolution: 1920×1080 at 24fps</li>
+      <li>Total frames: 3,500 (2 min 25 sec)</li>
+    </ul>
+  </div>
+  <div class="detail-block">
+    <div class="detail-label">Key Features</div>
+    <ul>
+      <li>Procedurally generated relative planet sizes</li>
+      <li>Realistic orbital mechanics</li>
+      <li>Dynamic camera zoom between planets</li>
+      <li>Detailed textures & atmospheric effects</li>
+      <li>Animated planet info displays</li>
+    </ul>
+  </div>
+  <div class="detail-block">
+    <div class="detail-label">Resources</div>
+    <ul>
+      <li>Textures from <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener">Solar System Scope</a></li>
+      <li>Python scripts: <a href="https://drive.google.com/drive/folders/1eVlGBxb9bhEMnWtpwL9aerD9mC7Apojv?usp=sharing" target="_blank" rel="noopener">Google Drive</a></li>
+    </ul>
+  </div>
+</section>
+
+<div class="divider">
+  <span>// animation sequence</span>
+  <div class="divider-line"></div>
+</div>
+
+<section class="sequence">
+  <div class="sequence-list">
+    <div class="seq-item">
+      <div class="seq-time">0 – 3s</div>
+      <div class="seq-desc">
+        <h4>Opening Sequence</h4>
+        <p>Camera zooms from the sun into Mercury, establishing the scale and visual style of the animation.</p>
+      </div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-time">3s per planet</div>
+      <div class="seq-desc">
+        <h4>Planetary Tour</h4>
+        <p>Smooth transitions between each planet — Mercury to Pluto — displaying planet name at each stop.</p>
+      </div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-time">Final 1 minute</div>
+      <div class="seq-desc">
+        <h4>Solar System Overview</h4>
+        <p>Camera zooms out to show the complete solar system with all planets orbiting the sun, demonstrating relative positions and speeds.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">
+  <span>// time calculator</span>
+  <div class="divider-line"></div>
+</div>
+
+<section class="calculator">
+  <div class="calc-inner">
+    <div class="calc-label">// interactive tool</div>
+    <div class="calc-title">Calculate Time & Motion in the Solar System</div>
+    <div class="calc-row">
+      <input type="number" id="earthYearsInput" class="calc-input" placeholder="Enter Earth years..." min="0" value="1" step="0.1"/>
+      <button class="calc-btn" onclick="calculatePlanetaryTime()">Calculate →</button>
+    </div>
+    <p class="calc-hint">Enter Earth years to see ages, revolutions, and orbital data for all planets.</p>
+  </div>
+</section>
+
+<div class="divider" id="planets">
+  <span>// celestial bodies & orbital dynamics</span>
+  <div class="divider-line"></div>
+</div>
+
+<section class="planets-grid">
+
+  <div class="planet-card fade-in">
+    <div class="planet-header">
+      <div class="planet-name">Sun</div>
+      <div class="planet-badge">Star</div>
+    </div>
+    <div class="planet-video"><video autoplay muted loop playsinline><source src="../videos/sun.mp4" type="video/mp4"/></video></div>
+    <div class="planet-stats">
+      <div class="stat-row"><span class="stat-key">Age</span><span class="stat-val">4.6 billion years</span></div>
+    </div>
+    <p class="planet-desc">The center of our solar system — a massive star whose gravity holds all planets in orbit.</p>
+  </div>
+
+  <div class="planet-card fade-in">
+    <div class="planet-header">
+      <div class="planet-name">Mercury</div>
+      <div class="planet-badge">PRJ-01</div>
+    </div>
+    <div class="planet-video"><video autoplay muted loop playsinline><source src="../videos/mercury.mp4" type="video/mp4"/></video></div>
+    <div class="planet-stats">
+      <div class="stat-row"><span class="stat-key">Age (in Mercury yrs)</span><span class="stat-val dynamic" data-body="mercury" data-type="age">4.15 yrs</span></div>
+      <div class="stat-row"><span class="stat-key">Revolutions</span><span class="stat-val dynamic" data-body="mercury" data-type="rev">4.15</span></div>
+      <div class="stat-row"><span class="stat-key">Orbital Period</span><span class="stat-val">88 Earth days</span></div>
+      <div class="stat-row"><span class="stat-key">Distance from Sun</span><span class="stat-val">57.9 million km</span></div>
+    </div>
+    <p class="planet-desc">The smallest and innermost planet — extreme temperatures and an impact-cratered surface.</p>
+  </div>
+
+  <div class="planet-card fade-in">
+    <div class="planet-header">
+      <div class="planet-name">Venus</div>
+      <div class="planet-badge">PRJ-02</div>
+    </div>
+    <div class="planet-video"><video autoplay muted loop playsinline><source src="../videos/venus.mp4" type="video/mp4"/></video></div>
+    <div class="planet-stats">
+      <div class="stat-row"><span class="stat-key">Age (in Venus yrs)</span><span class="stat-val dynamic" data-body="venus" data-type="age">1.63 yrs</span></div>
+      <div class="stat-row"><span class="stat-key">Revolutions</span><span class="stat-val dynamic" data-body="venus" data-type="rev">1.63</span></div>
+      <div class="stat-row"><span class="stat-key">Orbital Period</span><span class="stat-val">225 Earth days</span></div>
+      <div class="stat-row"><span class="stat-key">Distance from Sun</span><span class="stat-val">108.2 million km</span></div>
+    </div>
+    <p class="planet-desc">Earth's twin — shrouded in toxic clouds with a runaway greenhouse effect making it the hottest planet.</p>
+  </div>
+
+  <div class="planet-card fade-in">
+    <div class="planet-header">
+      <div class="planet-name">Earth</div>
+      <div class="planet-badge">Reference</div>
+    </div>
+    <div class="planet-video"><video autoplay muted loop playsinline><source src="../videos/earth.mp4" type="video/mp4"/></video></div>
+    <div class="planet-stats">
+      <div class="stat-row"><span class="stat-key">Age (in Earth yrs)</span><span class="stat-val dynamic" data-body="earth" data-type="age">1.00 yr</span></div>
+      <div class="stat-row"><span class="stat-key">Revolutions</span><span class="stat-val dynamic" data-body="earth" data-type="rev">1.00</span></div>
+      <div class="stat-row"><span class="stat-key">Orbital Period</span><span class="stat-val">365.25 Earth days</span></div>
+      <div class="stat-row"><span class="stat-key">Distance from Sun</span><span class="stat-val">149.6 million km</span></div>
+    </div>
+    <p class="planet-desc">Our home — the only known place in the universe confirmed to host life.</p>
+  </div>
+
+  <div class="planet-card fade-in">
+    <div class="planet-header">
+      <div class="planet-name">Mars</div>
+      <div class="planet-badge">PRJ-04</div>
+    </div>
+    <div class="planet-video"><video autoplay muted loop playsinline><source src="../videos/mars.mp4" type="video/mp4"/></video></div>
+    <div class="planet-stats">
+      <div class="stat-row"><span class="stat-key">Age (in Mars yrs)</span><span class="stat-val dynamic" data-body="mars" data-type="age">0.53 yrs</span></div>
+      <div class="stat-row"><span class="stat-key">Revolutions</span><span class="stat-val dynamic" data-body="mars" data-type="rev">0.53</span></div>
+      <div class="stat-row"><span class="stat-key">Orbital Period</span><span class="stat-val">687 Earth days</span></div>
+      <div class="stat-row"><span class="stat-key">Distance from Sun</span><span class="stat-val">227.9 million km</span></div>
+    </div>
+    <p class="planet-desc">The Red Planet — home to the solar system's largest volcano and canyon, with ancient riverbeds.</p>
+  </div>
+
+  <div class="planet-card fade-in">
+    <div class="planet-header">
+      <div class="planet-name">Jupiter</div>
+      <div class="planet-badge">PRJ-05</div>
+    </div>
+    <div class="planet-video"><video autoplay muted loop playsinline><source src="../videos/jupiter.mp4" type="video/mp4"/></video></div>
+    <div class="planet-stats">
+      <div class="stat-row"><span class="stat-key">Age (in Jupiter yrs)</span><span class="stat-val dynamic" data-body="jupiter" data-type="age">0.08 yrs</span></div>
+      <div class="stat-row"><span class="stat-key">Revolutions</span><span class="stat-val dynamic" data-body="jupiter" data-type="rev">0.08</span></div>
+      <div class="stat-row"><span class="stat-key">Orbital Period</span><span class="stat-val">11.86 Earth years</span></div>
+      <div class="stat-row"><span class="stat-key">Distance from Sun</span><span class="stat-val">778.5 million km</span></div>
+    </div>
+    <p class="planet-desc">The largest planet — a gas giant with a Great Red Spot storm raging for centuries.</p>
+  </div>
+
+  <div class="planet-card fade-in">
+    <div class="planet-header">
+      <div class="planet-name">Saturn</div>
+      <div class="planet-badge">PRJ-06</div>
+    </div>
+    <div class="planet-video"><video autoplay muted loop playsinline><source src="../videos/saturn.mp4" type="video/mp4"/></video></div>
+    <div class="planet-stats">
+      <div class="stat-row"><span class="stat-key">Age (in Saturn yrs)</span><span class="stat-val dynamic" data-body="saturn" data-type="age">0.03 yrs</span></div>
+      <div class="stat-row"><span class="stat-key">Revolutions</span><span class="stat-val dynamic" data-body="saturn" data-type="rev">0.03</span></div>
+      <div class="stat-row"><span class="stat-key">Orbital Period</span><span class="stat-val">29.45 Earth years</span></div>
+      <div class="stat-row"><span class="stat-key">Distance from Sun</span><span class="stat-val">1.432 billion km</span></div>
+    </div>
+    <p class="planet-desc">Famous for its spectacular ring system — a gas giant so light it would float on water.</p>
+  </div>
+
+  <div class="planet-card fade-in">
+    <div class="planet-header">
+      <div class="planet-name">Uranus</div>
+      <div class="planet-badge">PRJ-07</div>
+    </div>
+    <div class="planet-video"><video autoplay muted loop playsinline><source src="../videos/uranus.mp4" type="video/mp4"/></video></div>
+    <div class="planet-stats">
+      <div class="stat-row"><span class="stat-key">Age (in Uranus yrs)</span><span class="stat-val dynamic" data-body="uranus" data-type="age">0.01 yrs</span></div>
+      <div class="stat-row"><span class="stat-key">Revolutions</span><span class="stat-val dynamic" data-body="uranus" data-type="rev">0.01</span></div>
+      <div class="stat-row"><span class="stat-key">Orbital Period</span><span class="stat-val">84.02 Earth years</span></div>
+      <div class="stat-row"><span class="stat-key">Distance from Sun</span><span class="stat-val">2.867 billion km</span></div>
+    </div>
+    <p class="planet-desc">An ice giant that rotates on its side — its blue-green color comes from atmospheric methane.</p>
+  </div>
+
+  <div class="planet-card fade-in">
+    <div class="planet-header">
+      <div class="planet-name">Neptune</div>
+      <div class="planet-badge">PRJ-08</div>
+    </div>
+    <div class="planet-video"><video autoplay muted loop playsinline><source src="../videos/neptune.mp4" type="video/mp4"/></video></div>
+    <div class="planet-stats">
+      <div class="stat-row"><span class="stat-key">Age (in Neptune yrs)</span><span class="stat-val dynamic" data-body="neptune" data-type="age">0.01 yrs</span></div>
+      <div class="stat-row"><span class="stat-key">Revolutions</span><span class="stat-val dynamic" data-body="neptune" data-type="rev">0.01</span></div>
+      <div class="stat-row"><span class="stat-key">Orbital Period</span><span class="stat-val">164.79 Earth years</span></div>
+      <div class="stat-row"><span class="stat-key">Distance from Sun</span><span class="stat-val">4.515 billion km</span></div>
+    </div>
+    <p class="planet-desc">The windiest planet — strongest storms in the solar system, deep blue atmosphere in constant motion.</p>
+  </div>
+
+  <div class="planet-card fade-in">
+    <div class="planet-header">
+      <div class="planet-name">Pluto</div>
+      <div class="planet-badge">Dwarf Planet</div>
+    </div>
+    <div class="planet-video"><video autoplay muted loop playsinline><source src="../videos/pluto.mp4" type="video/mp4"/></video></div>
+    <div class="planet-stats">
+      <div class="stat-row"><span class="stat-key">Age (in Pluto yrs)</span><span class="stat-val dynamic" data-body="pluto" data-type="age">0.00 yrs</span></div>
+      <div class="stat-row"><span class="stat-key">Revolutions</span><span class="stat-val dynamic" data-body="pluto" data-type="rev">0.00</span></div>
+      <div class="stat-row"><span class="stat-key">Orbital Period</span><span class="stat-val">248.00 Earth years</span></div>
+      <div class="stat-row"><span class="stat-key">Distance from Sun</span><span class="stat-val">5.906 billion km</span></div>
+    </div>
+    <p class="planet-desc">A dwarf planet in the Kuiper Belt — icy surface and an eccentric, tilted orbit.</p>
+  </div>
+
+</section>
+
+<div class="divider" id="script">
+  <span>// python script</span>
+  <div class="divider-line"></div>
+</div>
+
+<section class="script-section">
+  <div class="script-header">
+    <div>
+      <div class="script-title">Solar System Generator</div>
+      <p class="script-desc">Creates all planetary objects with relative sizes and positions, sets up materials, and establishes orbital paths using Blender's Python API.</p>
+    </div>
+    <div class="script-actions">
+      <button class="btn-ghost" onclick="copyScript()">Copy Script</button>
+      <a class="btn-accent" href="https://drive.google.com/drive/folders/1eVlGBxb9bhEMnWtpwL9aerD9mC7Apojv?usp=sharing" target="_blank" rel="noopener">Download ↗</a>
+    </div>
+  </div>
+  <div class="code-block">
+    <pre id="scriptCode">
+import bpy
+import math
+from mathutils import Euler
+
+# === RENDER OPTIMIZATION ===
+ADAPTIVE_SAMPLING = True
+PERSISTENT_DATA   = True
+TILE_SIZE         = 256
+USE_OPTIX         = True
+ORBITAL_SPEED_MULTIPLIER = 2.0
+
+# === TEXTURE PATHS ===
+TEXTURE_PATHS = {
+    "Sun":        r"C:\textures\2k_sun.jpg",
+    "Mercury":    r"C:\textures\2k_mercury.jpg",
+    "Venus":      r"C:\textures\2k_venus.jpg",
+    "Earth":      r"C:\textures\2k_earth.jpg",
+    "Mars":       r"C:\textures\2k_mars.jpg",
+    "Jupiter":    r"C:\textures\2k_jupiter.jpg",
+    "Saturn":     r"C:\textures\2k_saturn.jpg",
+    "SaturnRings":r"C:\textures\2k_saturn_rings_alpha.png",
+    "Uranus":     r"C:\textures\2k_uranus.jpg",
+    "Neptune":    r"C:\textures\2k_neptune.jpg",
+    "Pluto":      r"C:\textures\2k_pluto.jpg",
+    "Stars":      r"C:\textures\2k_stars.jpg"
+}
+
+# === PLANET DATA ===
+planet_data = [
+    {"name": "Mercury", "distance":  4, "radius": 0.30, "period":    88, "rotation_hours":  1407.6},
+    {"name": "Venus",   "distance":  6, "radius": 0.50, "period":   225, "rotation_hours": -5832.5},
+    {"name": "Earth",   "distance":  8, "radius": 0.50, "period":   365, "rotation_hours":    24.0},
+    {"name": "Mars",    "distance": 10, "radius": 0.40, "period":   687, "rotation_hours":    24.6},
+    {"name": "Jupiter", "distance": 14, "radius": 1.10, "period":  4333, "rotation_hours":     9.9},
+    {"name": "Saturn",  "distance": 18, "radius": 0.90, "period": 10759, "rotation_hours":    10.7},
+    {"name": "Uranus",  "distance": 22, "radius": 0.70, "period": 30685, "rotation_hours":   -17.2},
+    {"name": "Neptune", "distance": 26, "radius": 0.70, "period": 60190, "rotation_hours":    16.1},
+    {"name": "Pluto",   "distance": 30, "radius": 0.15, "period": 90560, "rotation_hours":  -153.3},
+]
+
+# Full script available via Download link above
+# (truncated here for readability)
+    </pre>
+  </div>
+</section>
+
+<footer>
+  <span>// Multimedia &amp; Authoring — Portfolio</span>
+  <span>Built with HTML · CSS · JS</span>
+</footer>
+
+<script>
+  const orbitalPeriods = {
+    mercury: 0.2408467,
+    venus:   0.61519726,
+    earth:   1.0,
+    mars:    1.8808158,
+    jupiter: 11.862615,
+    saturn:  29.447498,
+    uranus:  84.016846,
+    neptune: 164.79132,
+    pluto:   248.00
+  };
+
+  function formatVal(val) {
+    if (val >= 1e6)  return (val / 1e6).toFixed(2) + ' million yrs';
+    if (val >= 1000) return (val / 1000).toFixed(2) + ' thousand yrs';
+    if (val >= 1)    return val.toFixed(2) + ' yrs';
+    return val.toFixed(4) + ' yrs';
+  }
+
+  function formatRev(val) {
+    if (val >= 1e6)  return (val / 1e6).toFixed(2) + ' million';
+    if (val >= 1000) return (val / 1000).toFixed(2) + ' thousand';
+    return val.toFixed(2);
+  }
+
+  function calculatePlanetaryTime() {
+    const earthYears = parseFloat(document.getElementById('earthYearsInput').value) || 0;
+    Object.entries(orbitalPeriods).forEach(([body, period]) => {
+      const planetYears = earthYears / period;
+      document.querySelectorAll(`[data-body="${body}"][data-type="age"]`).forEach(el => {
+        el.textContent = formatVal(planetYears);
+      });
+      document.querySelectorAll(`[data-body="${body}"][data-type="rev"]`).forEach(el => {
+        el.textContent = formatRev(planetYears);
+      });
+    });
+
+    const btn = document.querySelector('.calc-btn');
+    const orig = btn.textContent;
+    btn.textContent = 'Done ✓';
+    setTimeout(() => btn.textContent = orig, 1800);
+  }
+
+  function copyScript() {
+    const text = document.getElementById('scriptCode').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.btn-ghost');
+      const orig = btn.textContent;
+      btn.textContent = 'Copied ✓';
+      setTimeout(() => btn.textContent = orig, 1800);
+    });
+  }
+
+  document.getElementById('earthYearsInput').addEventListener('keypress', e => {
+    if (e.key === 'Enter') calculatePlanetaryTime();
+  });
+
+  document.addEventListener('DOMContentLoaded', calculatePlanetaryTime);
+</script>
+
+</body>
+</html>
