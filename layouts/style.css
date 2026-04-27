@@ -1,9 +1,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #1a1a1a;
-  --bg2: #242424;
-  --bg3: #2e2e2e;
+  --bg: #0a0a0a;
+  --bg2: #1a1a1a;
+  --bg3: #262626;
   --border: rgba(255,255,255,0.12);
   --border-mid: rgba(255,255,255,0.18);
   --accent: #c8a97e;

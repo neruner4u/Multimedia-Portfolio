@@ -5,142 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>3D Solar System — Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../layouts/style.css"/>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg: #1a1a1a;
-    --bg2: #242424;
-    --bg3: #2e2e2e;
-    --border: rgba(255,255,255,0.12);
-    --accent: #c8a97e;
-    --text: #f0f0f0;
-    --text-mid: #b0b0b0;
-    --text-dim: #7a7a7a;
-    --serif: 'DM Serif Display', Georgia, serif;
-    --mono: 'DM Mono', monospace;
-  }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--mono);
-    font-size: 13px;
-    line-height: 1.7;
-    min-height: 100vh;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
-  }
-
-  * { position: relative; z-index: 1; }
-
-  /* HEADER */
-  header {
-    border-bottom: 1px solid var(--border);
-    padding: 28px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 20px;
-  }
-  .logo-block .eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .logo-block h1 {
-    font-family: var(--serif);
-    font-size: clamp(22px, 4vw, 36px);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    line-height: 1.1;
-  }
-  .logo-block h1 em { font-style: italic; color: var(--accent); }
-  .header-meta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    color: var(--text-dim);
-    text-transform: uppercase;
-  }
-  .status-row { display: flex; align-items: center; gap: 6px; color: var(--accent); }
-  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-  /* NAV */
-  nav {
-    padding: 14px 40px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    gap: 28px;
-    align-items: center;
-  }
-  nav a {
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  nav a:hover, nav a.active { color: var(--accent); }
-  .nav-back::before { content: '← '; }
-
-  /* HERO */
-  .hero {
-    padding: 64px 40px 48px;
-    border-bottom: 1px solid var(--border);
-    max-width: 720px;
-  }
-  .hero-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 16px; }
-  .hero h2 {
-    font-family: var(--serif);
-    font-size: clamp(28px, 5vw, 50px);
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    margin-bottom: 20px;
-  }
-  .hero h2 em { font-style: italic; color: var(--accent); }
-  .hero p { font-size: 13px; color: var(--text-mid); line-height: 1.8; max-width: 500px; margin-bottom: 20px; }
-  .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tech-tag {
-    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--text-dim); border: 1px solid var(--border); padding: 3px 8px; border-radius: 2px;
-  }
-
-  /* DIVIDER */
-  .divider {
-    padding: 18px 40px;
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 16px;
-  }
-  .divider span { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; }
-  .divider-line { flex: 1; height: 1px; background: var(--border); }
-
-  /* FEATURED VIDEO */
-  .featured-video { padding: 40px; border-bottom: 1px solid var(--border); }
-  .video-wrap {
-    position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
-    border: 1px solid var(--border); border-radius: 2px; background: var(--bg3);
-  }
-  .video-wrap iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
-
   /* PROJECT DETAILS */
   .details-grid {
     display: grid;
@@ -202,7 +68,7 @@
   .calc-btn {
     background: var(--accent); border: none; padding: 12px 20px;
     font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
-    text-transform: uppercase; color: #0b0b0b; cursor: pointer; transition: opacity 0.2s;
+    text-transform: uppercase; color: #1a1a1a; cursor: pointer; transition: opacity 0.2s;
     white-space: nowrap;
   }
   .calc-btn:hover { opacity: 0.85; }
@@ -267,7 +133,7 @@
   .btn-accent {
     background: var(--accent); border: 1px solid var(--accent); padding: 8px 16px;
     font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: #0b0b0b; cursor: pointer; border-radius: 2px; transition: opacity 0.2s; text-decoration: none;
+    color: #1a1a1a; cursor: pointer; border-radius: 2px; transition: opacity 0.2s; text-decoration: none;
     display: inline-block;
   }
   .btn-accent:hover { opacity: 0.85; }
@@ -281,29 +147,11 @@
     line-height: 1.7; color: var(--text-mid); white-space: pre;
   }
   .code-block pre .kw { color: #c8a97e; }
-  .code-block pre .cm { color: #555; font-style: italic; }
+  .code-block pre .cm { color: #7a7a7a; font-style: italic; }
   .code-block pre .st { color: #9db8a0; }
   .code-block pre .nm { color: #a8b8d0; }
 
-  /* FOOTER */
-  footer {
-    padding: 24px 40px;
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim);
-    flex-wrap: wrap; gap: 12px;
-  }
-
-  /* FADE IN */
-  @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
-  .fade-in { opacity: 0; animation: fadeUp 0.5s ease forwards; }
-  .fade-in:nth-child(1){animation-delay:0.05s} .fade-in:nth-child(2){animation-delay:0.12s}
-  .fade-in:nth-child(3){animation-delay:0.19s} .fade-in:nth-child(4){animation-delay:0.26s}
-  .fade-in:nth-child(5){animation-delay:0.33s} .fade-in:nth-child(6){animation-delay:0.40s}
-  .fade-in:nth-child(7){animation-delay:0.47s} .fade-in:nth-child(8){animation-delay:0.54s}
-  .fade-in:nth-child(9){animation-delay:0.61s} .fade-in:nth-child(10){animation-delay:0.68s}
-
   @media (max-width: 640px) {
-    header, nav, .hero, .divider, .featured-video, .sequence, .calculator, .script-section, footer { padding-left: 20px; padding-right: 20px; }
     .detail-block, .planet-card { border-right: none; padding: 24px 20px; }
     .seq-item { flex-direction: column; gap: 8px; }
     .seq-time { min-width: auto; }
@@ -313,17 +161,16 @@
 </head>
 <body>
 
-<header>
-  <div class="logo-block">
-    <div class="eyebrow">// multimedia & authoring</div>
-    <h1>Visual <em>Works</em></h1>
-  </div>
-  <div class="header-meta">
-    <div class="status-row"><div class="dot"></div> Status: Active</div>
-    <div>Updated: Weekly</div>
-    <div>System: Nominal</div>
-  </div>
-</header>
+<div id="header-container"></div>
+
+<script>
+  fetch('../layouts/header.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('header-container').innerHTML = html;
+    })
+    .catch(error => console.error('Error loading header:', error));
+</script>
 
 <nav>
   <a href="../index.html" class="nav-back">Back to Projects</a>
@@ -658,8 +505,6 @@ planet_data = [
     {"name": "Pluto",   "distance": 30, "radius": 0.15, "period": 90560, "rotation_hours":  -153.3},
 ]
 
-# Full script available via Download link above
-# (truncated here for readability)
     </pre>
   </div>
 </section>
