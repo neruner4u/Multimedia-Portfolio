@@ -361,6 +361,29 @@ footer {
   background: var(--gray-dark);
 }
 
+.card-image {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--navy-light);
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--gray-dark);
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.8;
+  transition: opacity .3s;
+}
+
+.card:hover .card-image img {
+  opacity: 1;
+}
+
 .card h3 {
   font-family: var(--sans);
   font-weight: 700;
