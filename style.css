@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap');
 
 /* ── VARIABLES ── */
 :root {
@@ -15,8 +15,8 @@
   --gray-light: #9ba8c5;
   --white:      #e8edf8;
   --white-pure: #ffffff;
-  --mono:       'Share Tech Mono', monospace;
-  --sans:       'Syne', sans-serif;
+  --mono:       'DM Mono', monospace;
+  --sans:       'DM Serif Display', serif;
 }
 
 /* ── RESET ── */
@@ -97,6 +97,15 @@ header {
   font-size: .7rem;
   color: var(--gray);
   line-height: 1.8;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .4rem;
+  color: var(--blue-glow);
+  margin-bottom: .4rem;
 }
 
 .status-dot {
@@ -247,6 +256,49 @@ footer {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 1.5rem;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.card-category {
+  font-size: .58rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--blue-glow);
+  border: 1px solid rgba(42,107,255,0.25);
+  padding: .2rem .55rem;
+  border-radius: 2px;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tech-tag {
+  font-size: .58rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gray);
+  border: 1px solid var(--navy-light);
+  padding: .2rem .55rem;
+  border-radius: 2px;
+}
+
+.card-arrow {
+  color: var(--blue-glow);
+  transition: transform .2s;
+}
+
+.card:hover .card-arrow {
+  transform: translateX(4px);
 }
 
 .card {
