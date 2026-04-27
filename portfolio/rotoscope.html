@@ -9,15 +9,15 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0b0b0b;
-    --bg2: #111111;
-    --bg3: #181818;
-    --border: rgba(255,255,255,0.08);
-    --border-mid: rgba(255,255,255,0.14);
+    --bg: #1a1a1a;
+    --bg2: #242424;
+    --bg3: #2e2e2e;
+    --border: rgba(255,255,255,0.12);
+    --border-mid: rgba(255,255,255,0.18);
     --accent: #c8a97e;
-    --text: #e2e2e2;
-    --text-mid: #999;
-    --text-dim: #555;
+    --text: #f0f0f0;
+    --text-mid: #b0b0b0;
+    --text-dim: #7a7a7a;
     --serif: 'DM Serif Display', Georgia, serif;
     --mono: 'DM Mono', monospace;
   }
@@ -383,12 +383,7 @@
 
   <div class="step-card fade-in">
     <div class="step-num"><span>01</span> Select Source Material</div>
-    <iframe width="240" height="140"
-src="https://www.youtube.com/embed/RlNCThJECtk"
-title="YouTube video player"
-frameborder="0"
-allowfullscreen>
-</iframe>
+    <iframe width="240" height="140" src="https://www.youtube.com/embed/RlNCThJECtk" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
     <p class="step-desc">Choose high-quality video with clear subject-background contrast and interesting movement patterns.</p>
   </div>
 
@@ -438,8 +433,7 @@ allowfullscreen>
   <div class="week-card fade-in">
     <div class="week-label">Week 01</div>
     <div class="week-video">
-      <iframe src="https://www.youtube.com/embed/9PD9m5hz6Mw" title="Week 1"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/9PD9m5hz6Mw" title="Week 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
   <div class="week-card fade-in">
@@ -477,10 +471,16 @@ allowfullscreen>
   </div>
 </section>
 
-<footer>
-  <span>Co, Miguel Antonio E.</span>
-  <span>BSIT - S - 2A</span>
-</footer>
+<div id="footer-container"></div>
+
+<script>
+  fetch('../layouts/footer.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('footer-container').innerHTML = html;
+    })
+    .catch(error => console.error('Error loading footer:', error));
+</script>
 
 </body>
 </html>

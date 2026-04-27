@@ -9,14 +9,14 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0b0b0b;
-    --bg2: #111111;
-    --bg3: #181818;
-    --border: rgba(255,255,255,0.08);
+    --bg: #1a1a1a;
+    --bg2: #242424;
+    --bg3: #2e2e2e;
+    --border: rgba(255,255,255,0.12);
     --accent: #c8a97e;
-    --text: #e2e2e2;
-    --text-mid: #999;
-    --text-dim: #555;
+    --text: #f0f0f0;
+    --text-mid: #b0b0b0;
+    --text-dim: #7a7a7a;
     --serif: 'DM Serif Display', Georgia, serif;
     --mono: 'DM Mono', monospace;
   }
@@ -664,10 +664,16 @@ planet_data = [
   </div>
 </section>
 
-<footer>
-  <span>// Multimedia &amp; Authoring — Portfolio</span>
-  <span>Built with HTML · CSS · JS</span>
-</footer>
+<div id="footer-container"></div>
+
+<script>
+  fetch('../layouts/footer.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('footer-container').innerHTML = html;
+    })
+    .catch(error => console.error('Error loading footer:', error));
+</script>
 
 <script>
   const orbitalPeriods = {
