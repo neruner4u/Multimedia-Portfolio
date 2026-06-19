@@ -365,12 +365,21 @@
     border-radius: 4px;
     background: var(--bg3);
   }
-  .final-output .final-video-wrap iframe {
+  .final-output .final-video-wrap iframe,
+  .final-output .final-video-wrap video,
+  .final-output .final-video-wrap object {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     border: none;
+  }
+  .final-disclaimer {
+    color: var(--text-dim);
+    font-size: 11px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    margin-top: 20px;
   }
 
   /* FOOTER */
@@ -621,8 +630,17 @@ allowfullscreen>
         <p>Your browser does not support HTML5 video. You can <a href="../images/final_vid.mp4">download the video</a> to watch it.</p>
       </object>
     </video>
-  </div>
-</section>
+  </div>  <div class="final-disclaimer">
+    DISCLAIMER
+
+    This video is a fan-made rotoscope animation created for educational and artistic purposes only.
+
+    The music, audio, and original footage featuring the individuals shown belong to their respective owners. No ownership is claimed over any copyrighted material used in this video.
+
+    This project was created solely to demonstrate and practice animation, editing, and visual effects techniques. No copyright infringement is intended, and this video is not intended for commercial use.
+
+    All rights belong to their respective owners.
+  </div></section>
 
 <footer>
   <span>Co, Miguel Antonio E.</span>
