@@ -199,12 +199,15 @@
   .steps-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    align-items: start;
     border-bottom: 1px solid var(--border);
   }
   .step-card {
     border-right: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
     transition: background 0.3s;
   }
   .step-card:hover { background: var(--bg2); }
