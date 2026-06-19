@@ -240,6 +240,23 @@
     transition: opacity 0.3s, filter 0.3s;
   }
   .step-card:hover .step-media img { opacity: 0.95; filter: grayscale(0%); }
+
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  .rounded {
+    border-radius: 4px;
+  }
+  .step-image {
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--bg3);
+    margin-bottom: 16px;
+  }
+
   .step-media-video {
     position: relative;
     padding-bottom: 56.25%;
@@ -392,11 +409,10 @@ allowfullscreen>
   </div>
 
   <div class="step-card fade-in">
-    <div class="step-num"><span>02</span></div>
-    <div class="step-image mb-3">
+    <div class="step-num"><span>02</span> Cut into 5-Second Clips</div>
+    <div class="step-image">
       <img src="../images/5s.png" alt="Cutting video into clips" class="img-fluid rounded">
     </div>
-    <div class="step-title">Cut into 5-Second Clips</div>
     <p class="step-desc">Split the selected video into 5-second segments for easier editing.</p>
   </div>
 
