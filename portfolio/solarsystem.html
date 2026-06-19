@@ -195,6 +195,100 @@
     font-style: italic;
   }
 
+  .solar-system {
+    padding: 48px 40px;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 30px;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(200,169,126,0.04) 0%, rgba(255,255,255,0.01) 100%);
+  }
+  .solar-system > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .solar-system h2 {
+    font-family: var(--serif);
+    font-size: clamp(34px, 4vw, 46px);
+    line-height: 1.05;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .solar-system p {
+    max-width: 520px;
+    color: var(--text-mid);
+    line-height: 1.8;
+  }
+  .solar-system-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .solar-system-list li {
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    position: relative;
+    padding-left: 20px;
+  }
+  .solar-system-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 18px;
+    line-height: 1;
+    top: 2px;
+  }
+  .solar-system-wrap {
+    position: relative;
+    padding: 24px;
+    border: 1px solid rgba(200,169,126,0.18);
+    border-radius: 16px;
+    background: rgba(255,255,255,0.02);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 20px 60px rgba(0,0,0,0.25);
+    overflow: hidden;
+  }
+  .solar-system-wrap::before,
+  .solar-system-wrap::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .solar-system-wrap::before {
+    width: 250px;
+    height: 250px;
+    top: -80px;
+    right: -80px;
+    background: rgba(200,169,126,0.08);
+  }
+  .solar-system-wrap::after {
+    width: 160px;
+    height: 160px;
+    bottom: -40px;
+    left: -40px;
+    background: rgba(255,255,255,0.05);
+  }
+  .solar-system-wrap iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 340px;
+    border: none;
+  }
+
+  @media (max-width: 960px) {
+    .solar-system {
+      grid-template-columns: 1fr;
+      padding: 32px 24px;
+    }
+  }
+
   /* PROJECT DETAILS */
   .details-grid {
     display: grid;
@@ -422,8 +516,14 @@
 
 <section class="solar-system fade-in">
   <div>
-    <h2>//Final Output</h2>
-    <p>This is the finished rotoscope video output, compiled with the final edits, color adjustments, and audio syncing. It highlights the completed animation and presents the final exported version in one polished piece.</p>
+    <h2>// Final Output</h2>
+    <p>Explore the final 3D solar system render in a curated presentation block that feels like a mission control console. This section is styled to reflect the same polished, cinematic energy as the rest of the portfolio.</p>
+    <ul class="solar-system-list">
+      <li>Final render playback in a framed starfield panel</li>
+      <li>Clear visual hierarchy with cosmic accent highlights</li>
+      <li>Aligned with the portfolio's refined dark UI theme</li>
+      <li>Designed for desktop and tablet viewing</li>
+    </ul>
   </div>
   <div class="solar-system-wrap">
     <iframe src="https://www.youtube.com/embed/Baoflhj5mlc" title="Solar System" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -652,12 +752,10 @@
     </div>
   </div>
   <div class="code-block">
-    <pre id="scriptCode">/Galactic Drive Folder
-  /Blender_Scenes
+    <pre id="scriptCode">/ Solar System Drive Folder
   /Textures
-  /Render_Presets
-  /Python_Scripts
-  /Reference_Moodboards
+  /Blender_Files
+  /Scripts
 
 Launch code: https://drive.google.com/drive/folders/19Nd-kYqNH5d5Hh74O_rZhtHrZsSZKqGd?usp=drive_link</pre>
   </div>
