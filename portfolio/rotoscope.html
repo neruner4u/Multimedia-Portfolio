@@ -198,16 +198,14 @@
   /* STEPS GRID */
   .steps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     align-items: start;
     border-bottom: 1px solid var(--border);
-    gap: 18px;
   }
   .step-card {
     border-right: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    padding: 24px 24px;
-    min-height: 360px;
+    padding: 28px 32px;
     display: flex;
     flex-direction: column;
     transition: background 0.3s;
@@ -331,15 +329,11 @@
   }
   .week-video iframe,
   .week-video video,
-  .week-video object,
-  .final-video-wrap iframe,
-  .final-video-wrap video,
-  .final-video-wrap object {
+  .week-video object {
     position: absolute;
-    top: 0; left: 0;
+    inset: 0;
     width: 100%; height: 100%;
     border: none;
-    object-fit: cover;
   }
 
   .final-output {
@@ -519,7 +513,7 @@ allowfullscreen>
   <div class="step-card fade-in">
     <div class="step-num"><span>08</span> Edit Lyrics & Background</div>
     <div class="step-image">
-      <img src="../images/lyrics_1.jpg" alt="Edit lyrics and background" class="img-fluid rounded">
+      <img src="../images/lyrics.jpg" alt="Edit lyrics and background" class="img-fluid rounded">
     </div>
     <p class="step-desc">Use Capcut to add lyrics, sync them with the audio, and change background colors to enhance visual appeal.</p>
   </div>
@@ -605,10 +599,10 @@ allowfullscreen>
   <div class="week-card fade-in">
     <div class="week-label">Week 11</div>
     <div class="week-video">
-      <video controls>
-        <source src="../images/final_vid.mp4" type="video/mp4" />
-        <object data="../images/final_vid.mp4" type="video/mp4">
-          <a href="../images/final_vid.mp4" download>Download the final video</a>
+      <video controls preload="metadata">
+        <source src="../images/final_vid.mp4" type="video/mp4">
+        <object data="../images/final_vid.mp4" type="video/mp4" width="100%" height="100%">
+          <p>Your browser does not support HTML5 video. You can <a href="../images/final_vid.mp4">download the video</a> to watch it.</p>
         </object>
       </video>
     </div>
@@ -621,10 +615,10 @@ allowfullscreen>
     <p>This is the finished rotoscope video output, compiled with the final edits, color adjustments, and audio syncing. It highlights the completed animation and presents the final exported version in one polished piece.</p>
   </div>
   <div class="final-video-wrap">
-    <video controls>
-      <source src="../images/final_vid.mp4" type="video/mp4" />
-      <object data="../images/final_vid.mp4" type="video/mp4">
-        <a href="../images/final_vid.mp4" download>Download the final video</a>
+    <video controls preload="metadata">
+      <source src="../images/final_vid.mp4" type="video/mp4">
+      <object data="../images/final_vid.mp4" type="video/mp4" width="100%" height="100%">
+        <p>Your browser does not support HTML5 video. You can <a href="../images/final_vid.mp4">download the video</a> to watch it.</p>
       </object>
     </video>
   </div>
