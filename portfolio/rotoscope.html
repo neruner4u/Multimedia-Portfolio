@@ -331,8 +331,10 @@
   }
   .week-video iframe,
   .week-video video,
+  .week-video object,
   .final-video-wrap iframe,
-  .final-video-wrap video {
+  .final-video-wrap video,
+  .final-video-wrap object {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
@@ -605,7 +607,9 @@ allowfullscreen>
     <div class="week-video">
       <video controls>
         <source src="../images/final_vid.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
+        <object data="../images/final_vid.mp4" type="video/mp4">
+          <a href="../images/final_vid.mp4" download>Download the final video</a>
+        </object>
       </video>
     </div>
   </div>
@@ -619,7 +623,9 @@ allowfullscreen>
   <div class="final-video-wrap">
     <video controls>
       <source src="../images/final_vid.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
+      <object data="../images/final_vid.mp4" type="video/mp4">
+        <a href="../images/final_vid.mp4" download>Download the final video</a>
+      </object>
     </video>
   </div>
 </section>
