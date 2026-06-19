@@ -420,6 +420,16 @@
   </div>
 </section>
 
+<section class="solar-system fade-in">
+  <div>
+    <h2>//Final Output</h2>
+    <p>This is the finished rotoscope video output, compiled with the final edits, color adjustments, and audio syncing. It highlights the completed animation and presents the final exported version in one polished piece.</p>
+  </div>
+  <div class="solar-system-wrap">
+    <iframe src="https://www.youtube.com/embed/Baoflhj5mlc" title="Solar System" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</section>
+
 <div class="divider" id="details">
   <span>// project details</span>
   <div class="divider-line"></div>
@@ -448,7 +458,7 @@
     <div class="detail-label">Resources</div>
     <ul>
       <li>Textures from <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener">Solar System Scope</a></li>
-      <li>Python scripts: <a href="https://drive.google.com/drive/folders/1AKXDTG_Pr2stQ_6t7NYzh4TATcUvE7NW?usp=drive_link" target="_blank" rel="noopener">Google Drive</a></li>
+      <li>Project directory: <a href="https://drive.google.com/drive/folders/19Nd-kYqNH5d5Hh74O_rZhtHrZsSZKqGd?usp=drive_link" target="_blank" rel="noopener">Galactic Drive Folder</a></li>
     </ul>
   </div>
 </section>
@@ -627,63 +637,29 @@
 </section>
 
 <div class="divider" id="script">
-  <span>// python script</span>
+  <span>// mission directory</span>
   <div class="divider-line"></div>
 </div>
 
 <section class="script-section">
   <div class="script-header">
     <div>
-      <div class="script-title">Solar System Generator</div>
-      <p class="script-desc">Creates all planetary objects with relative sizes and positions, sets up materials, and establishes orbital paths using Blender's Python API.</p>
+      <div class="script-title">Cosmic Archive</div>
+      <p class="script-desc">Jump into the mission folder where Blender scenes, rendering assets, and project notes orbit together. This is the creative launchpad for the whole solar system build.</p>
     </div>
     <div class="script-actions">
-      <button class="btn-ghost" onclick="copyScript()">Copy Script</button>
+      <a class="btn-accent" href="https://drive.google.com/drive/folders/19Nd-kYqNH5d5Hh74O_rZhtHrZsSZKqGd?usp=drive_link" target="_blank" rel="noopener">Open Galactic Drive</a>
     </div>
   </div>
   <div class="code-block">
-    <pre id="scriptCode">
-import bpy
-import math
-from mathutils import Euler
+    <pre id="scriptCode">/Galactic Drive Folder
+  /Blender_Scenes
+  /Textures
+  /Render_Presets
+  /Python_Scripts
+  /Reference_Moodboards
 
-# === RENDER OPTIMIZATION ===
-ADAPTIVE_SAMPLING = True
-PERSISTENT_DATA   = True
-TILE_SIZE         = 256
-USE_OPTIX         = True
-ORBITAL_SPEED_MULTIPLIER = 2.0
-
-# === TEXTURE PATHS ===
-TEXTURE_PATHS = {
-    "Sun":        r"C:\textures\2k_sun.jpg",
-    "Mercury":    r"C:\textures\2k_mercury.jpg",
-    "Venus":      r"C:\textures\2k_venus.jpg",
-    "Earth":      r"C:\textures\2k_earth.jpg",
-    "Mars":       r"C:\textures\2k_mars.jpg",
-    "Jupiter":    r"C:\textures\2k_jupiter.jpg",
-    "Saturn":     r"C:\textures\2k_saturn.jpg",
-    "SaturnRings":r"C:\textures\2k_saturn_rings_alpha.png",
-    "Uranus":     r"C:\textures\2k_uranus.jpg",
-    "Neptune":    r"C:\textures\2k_neptune.jpg",
-    "Pluto":      r"C:\textures\2k_pluto.jpg",
-    "Stars":      r"C:\textures\2k_stars.jpg"
-}
-
-# === PLANET DATA ===
-planet_data = [
-    {"name": "Mercury", "distance":  4, "radius": 0.30, "period":    88, "rotation_hours":  1407.6},
-    {"name": "Venus",   "distance":  6, "radius": 0.50, "period":   225, "rotation_hours": -5832.5},
-    {"name": "Earth",   "distance":  8, "radius": 0.50, "period":   365, "rotation_hours":    24.0},
-    {"name": "Mars",    "distance": 10, "radius": 0.40, "period":   687, "rotation_hours":    24.6},
-    {"name": "Jupiter", "distance": 14, "radius": 1.10, "period":  4333, "rotation_hours":     9.9},
-    {"name": "Saturn",  "distance": 18, "radius": 0.90, "period": 10759, "rotation_hours":    10.7},
-    {"name": "Uranus",  "distance": 22, "radius": 0.70, "period": 30685, "rotation_hours":   -17.2},
-    {"name": "Neptune", "distance": 26, "radius": 0.70, "period": 60190, "rotation_hours":    16.1},
-    {"name": "Pluto",   "distance": 30, "radius": 0.15, "period": 90560, "rotation_hours":  -153.3},
-]
-
-    </pre>
+Launch code: https://drive.google.com/drive/folders/19Nd-kYqNH5d5Hh74O_rZhtHrZsSZKqGd?usp=drive_link</pre>
   </div>
 </section>
 
