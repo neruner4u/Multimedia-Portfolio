@@ -198,14 +198,16 @@
   /* STEPS GRID */
   .steps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     align-items: start;
     border-bottom: 1px solid var(--border);
+    gap: 24px;
   }
   .step-card {
     border-right: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    padding: 28px 32px;
+    padding: 36px 36px;
+    min-height: 420px;
     display: flex;
     flex-direction: column;
     transition: background 0.3s;
